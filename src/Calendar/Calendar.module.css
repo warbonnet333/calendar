@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  flex-flow: row;
+  width: 475px;
+  justify-content: space-around;
+  margin: 0 auto;
+}
+
+.piackerContainer {
+  display: block;
+  width: 260px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.selectContainer {
+  width: 190px;
+}
