@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import DayPicker, { DateUtils } from "react-day-picker";
 import styles from "./Calendar.module.css";
 import "./DataPicker.css";
-// import options from '../servise/options'
-// import Select from 'react-select';
 import OptionList from './OptionsList/OptionList'
 import { WEEKDAYS_LONG, WEEKDAYS_SHORT, MONTHS } from '../servise/localization/ua'
 
@@ -13,6 +11,7 @@ export default class Calendar extends Component {
   state = {
     from: undefined,
     to: undefined,
+    selectedTag: ""
   };
 
 
@@ -24,6 +23,7 @@ export default class Calendar extends Component {
 
   selectOption = (event) => {
     const name = event.target.dataset.name
+    this.setState({ selectedTag: name })
 
     switch (name) {
       case "today":
@@ -66,6 +66,11 @@ export default class Calendar extends Component {
     }
   }
 
+  onActiveClick = (oldStyle, actStyle, name) => {
+    return (name === this.state.selectedTag) ? `${oldStyle} ${actStyle}` : `${oldStyle}  `
+  }
+
+
 
   render() {
     const { from, to } = this.state;
@@ -73,7 +78,7 @@ export default class Calendar extends Component {
     return (
       <div className={styles.container}>
         <div className={styles.selectContainer}>
-          <OptionList onSelectClick={this.selectOption} />
+          <OptionList onSelectClick={this.selectOption} onActiveClick={this.onActiveClick} />
         </div>
         <div className={styles.piackerContainer}>
           <DayPicker
@@ -85,8 +90,12 @@ export default class Calendar extends Component {
             weekdaysShort={WEEKDAYS_SHORT}
             firstDayOfWeek={1}
           />
-        </div>
-      </div>
+          <div className={styles.buttons__block}>
+            <button className={styles.btn__cncl}>Відмінити</button>
+            <button className={from ? styles.btn__new : styles.disable}>Оновити</button>
+          </div>
+        </div >
+      </div >
     );
   }
 }

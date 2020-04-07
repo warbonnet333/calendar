@@ -7,7 +7,6 @@
   display: flex;
   flex-flow: column;
   justify-content: space-around;
-  /* background-color: darkgoldenrod; */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
 }
@@ -24,8 +23,8 @@
   cursor: pointer;
 }
 
-.list__item:active {
-  background-color: tomato;
+.active {
+  background-color: lightgrey;
 }
 
 .list__item:hover {
